@@ -1,0 +1,50 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{base :: head}">
+</head>
+<body>
+	<header th:replace="~{base::header}"></header>
+	<div class="container">
+		<div th:replace="~{base::titulo('Novo Pedido')}"></div>
+		<div class="card">
+			<form th:object="${requisicaoNovoPedidoDTO}" class="card-body"
+				th:action="@{/pedido/novo}" method="POST">
+				<div class="form-group m-3">
+					<!-- autofocus="autofocus" -->
+					<label for="nomeProduto">Produto</label> <input
+						th:field="*{nomeProduto}" type="text"
+						placeholder="Nome do produto" th:errorclass="is-invalid"
+						class="form-control" /> <small class="form-text text-muted">Informe
+						qual o nome do produto</small>
+					<div th:errors="*{nomeProduto}" class="invalid-feedback"></div>
+				</div>
+				<div class="form-group m-3">
+					<label for="urlProduto">Url</label> <input th:field="*{urlProduto}"
+						placeholder=" Url do produto" th:errorclass="is-invalid"
+						class="form-control" /> <small class="form-text text-muted">Procure
+						um site do produto que você deseja e cole a url da página aqui</small>
+					<div th:errors="*{urlProduto}" class="invalid-feedback"></div>
+				</div>
+				<div class="form-group m-3">
+					<label for="urlImagem">Imagem</label> <input
+						th:field="*{urlImagem}" placeholder="Url da Imagem"
+						th:errorclass="is-invalid" class="form-control" /> <small
+						class="form-text text-muted">Copia a url de uma boa imagem
+						do produto e cole aqui para ajudar a consegui compradores</small>
+					<div th:errors="*{urlImagem}" class="invalid-feedback"></div>
+				</div>
+				<div class="form-group m-3">
+					<label for="descricaoProduto">Descrição</label>
+					<textarea th:field="*{descricaoProduto}" rows="4"
+						class="form-control"
+						placeholder="Adicione detalhes importantes para ajudar o comprador"
+						th:errorclass="is-invalid"></textarea>
+					<div th:errors="*{descricaoProduto}" class="invalid-feedback"></div>
+				</div>
+					<button type="submit" class="btn btn-success m-3">Cadastrar</button>
+					<a href="redirect:/usuario/userhome"><button class="btn btn-danger m-3">Cancelar</button></a>
+			</form>
+		</div>
+	</div>
+	<footer th:replace="~{base::footer}"></footer>
+</body>
+</html>

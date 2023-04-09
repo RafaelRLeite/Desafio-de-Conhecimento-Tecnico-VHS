@@ -1,0 +1,31 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{base::head}">
+</head>
+<body>
+	<header th:replace="~{base::header}"></header>
+	<div class="container">
+		<div th:replace="~{base::titulo('Login')}"></div>
+		<div class="card mb-3">
+			<p th:if="${loginError}" class="error">Login ou senha incorreta</p>
+			<form th:action="@{/login}" method="post">
+				<div class="form-group m-3">
+					<label for="username">Usuário</label> <input autofocus="autofocus"
+						name="username" type="text" placeholder="Nome do usuário"
+						class="form-control" /> <small class="form-text text-muted">Informe
+						qual o nome do usuário</small>
+				</div>
+				<div class="form-group m-3">
+					<label for="password">Senha</label> <input name="password"
+						type="password" placeholder="Senha do usuário"
+						class="form-control" /> <small class="form-text text-muted">Informe
+						qual a senha do usuário</small>
+				</div>
+				<div>
+					<input class="btn btn-success m-3" type="submit" value="Login" />
+				</div>
+			</form>
+		</div>
+	</div>
+	<footer th:replace="~{base::footer}"></footer>
+</body>
+</html>
