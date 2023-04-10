@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -44,6 +46,7 @@ public class Pedido implements Serializable {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "username", foreignKey = @ForeignKey(name = "user_username_fk"))
+	@JsonBackReference
 	private User user;
 
 	public String getNomeProduto() {
@@ -85,15 +88,31 @@ public class Pedido implements Serializable {
 	public void setUrlImagem(String urlImagem) {
 		this.urlImagem = urlImagem;
 	}
-
-	public String getDescricao() {
+	
+	public String getDescricaoProduto() {
 		return descricaoProduto;
 	}
-
-	public void setDescricao(String descricao) {
-		this.descricaoProduto = descricao;
+	
+	public void setDescricaoProduto(String descricaoProduto) {
+		this.descricaoProduto = descricaoProduto;
 	}
 
+	public StatusPedido getStatusPedido() {
+		return statusPedido;
+	}
+	
+	public void setStatusPedido(StatusPedido statusPedido) {
+		this.statusPedido = statusPedido;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+	
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id, nomeProduto);
@@ -115,23 +134,4 @@ public class Pedido implements Serializable {
 	public String toString() {
 		return "Pedido [nomeProduto=" + nomeProduto + "]";
 	}
-
-	public StatusPedido getStatusPedido() {
-		return statusPedido;
-		
-	}
-
-	public void setStatusPedido(StatusPedido statusPedido) {
-		this.statusPedido = statusPedido;
-		
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-	
 }

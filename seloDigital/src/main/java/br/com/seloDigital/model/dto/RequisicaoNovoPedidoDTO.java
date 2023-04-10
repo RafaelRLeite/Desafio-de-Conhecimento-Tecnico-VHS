@@ -57,7 +57,7 @@ public class RequisicaoNovoPedidoDTO {
 		pedido.setNomeProduto(nomeProduto);
 		pedido.setUrlProduto(urlProduto);
 		pedido.setUrlImagem(urlImagem);
-		pedido.setDescricao(descricaoProduto);
+		pedido.setDescricaoProduto(descricaoProduto);
 		pedido.setStatusPedido(StatusPedido.AGUARDANDO);
 		return pedido;
 	}

@@ -3,6 +3,8 @@ package br.com.seloDigital.model;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -28,6 +30,7 @@ public class User implements Serializable {
 	private Boolean enabled;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
+	@JsonManagedReference
 	private List<Pedido> pedidos;
 	
 	public String getUsername() {

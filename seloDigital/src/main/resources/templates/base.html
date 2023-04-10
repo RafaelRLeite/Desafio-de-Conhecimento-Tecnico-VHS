@@ -25,22 +25,26 @@
 </head>
 
 <header th:fragment="header">
-	<div class=" row logo-container p-3">
-		<div class="col">
-			<span class="logo"><a class="nav-link" th:href="@{/home}">mundi</a></span>
-		</div>
-		<div class="col d-flex justify-content-end align-items-center">
-			<a class="m-3 text-light link-offset-2 link-underline link-underline-opacity-0"
-				sec:authorize="!isAuthenticated()" href="/login">login</a>
-			<a class="m-3 d-flex text-light link-offset-2 link-underline link-underline-opacity-0"
-				sec:authorize="isAuthenticated()" href="/logout">logout</a>
+	<div class="logo-container p-3">
+		<div class="row">
+			<span class="logo col"><a class="nav-link" th:href="@{/home}">mundi</a></span>
+			<div class="col d-flex justify-content-end align-items-center">
+				<a
+					class="m-3 text-light link-offset-2 link-underline link-underline-opacity-0"
+					sec:authorize="!isAuthenticated()" href="/login">login</a> <a
+					class="m-3 d-flex text-light link-offset-2 link-underline link-underline-opacity-0"
+					sec:authorize="isAuthenticated()" href="/logout">logout</a>
+			</div>
 		</div>
 	</div>
-	<div class="row" sec:authorize="isAuthenticated()">
+	<div sec:authorize="isAuthenticated()">
 		<div class="col">
 			<ul class="nav">
 				<li class="nav-item"><a class="nav-link" th:href="@{/home}">Home</a></li>
-				<li class="nav-item"><a class="nav-link" th:href="@{/usuario/pedido}">Meus Pedidos</a></li>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/usuario/pedido}">Meus Pedidos</a></li>
+				<li class="nav-item"><a class="nav-link" th:href="@{/oferta}">Faça
+						sua oferta </a></li>
 			</ul>
 		</div>
 	</div>

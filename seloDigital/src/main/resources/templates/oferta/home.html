@@ -1,0 +1,62 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{base::head}">
+
+</head>
+<body onload="onload()">
+	<header th:replace="~{base::header}"></header>
+	<div id="ofertas" class="container">
+		<div th:replace="~{base::titulo('Faça suas Ofertas')}"></div>
+		<div class="card mb-3" v-for="pedido in pedidos">
+			<div class="card-header alert alert-dark">{{pedido.nomeProduto}}</div>
+			<div class="card-body">
+				<div class="row">
+					<div class="col-12 col-sm-8 mb-3">
+						<div class="row">
+							<div class="col-md-5">
+								Valor: <input/>
+							</div>
+							<div class="col-md-7">
+								data da entrega: <input/>
+							</div>
+						</div>
+						<div>Produto</div>
+						<div>
+							<a v-bind:href="pedido.urlProduto" target="_blank">{{pedido.nomeProduto}}</a>
+						</div>
+						<div>descrição</div>
+						<div>
+							<textarea class="form-control">{{pedido.descricaoProduto}}</textarea>
+						</div>
+					</div>
+					<div class="col-12 col-sm-4 mb-3">
+						<div>
+							<img class="img-thumbnail rounded mx-auto d-block" v-bind:src="pedido.urlImagem" alt="Imagem do produto"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="~{base::footer}">
+	</footer>
+	<script>
+		function onload(){
+			const { createApp, onMounted, ref } = Vue 
+			createApp({
+			  setup() {
+					const pedidos = ref([])
+
+					onMounted(async () => {
+						const response = await axios.get('http://localhost:8080/api/pedidos/aguardado')
+						pedidos.value = response.data
+					})
+
+					return { pedidos }
+				}
+			}).mount('#ofertas')
+		}
+	</script>
+	<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+</body>
+</html>
